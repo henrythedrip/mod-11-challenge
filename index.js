@@ -4,7 +4,9 @@ const fs = require('fs');
 const router = require('./controllers')
 
 const app = express();
-const port = 3001;
+// heroku will automagically use port 80 for http/tcp, so we should prefer it when deploying to heroku to avoid port binding timeout errors
+const port = process.env.PORT || 3001;
+
 
 // uses middleware that allows certain files to be provided to the frontend
 app.use('/static', express.static('./Develop/public'));
